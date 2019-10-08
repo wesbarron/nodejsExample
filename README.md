@@ -1,8 +1,6 @@
-# assignment2PHPDemo
+# assignment 3 Node js with Express Demo
 
-This project is being created to demo how assignment 2 should be laid out to students. It will be using Bootstrap and will be connected to the XKCD api. It will pull the latest and a random comic across 2 different pages. 
-
-This project will be in PHP and it will 
+This project is the beginning of NodeJS for server side web dev. It will cover the basics of creating a skeleton project that displays a hello world. We will be using express with Node JS to handle the request and response. We will also be incorporating other NPM packages as we grow this assignment.
 
 Heroku app link:
 
