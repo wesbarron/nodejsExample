@@ -1,0 +1,26 @@
+{
+  "name": "nodejsexample",
+  "version": "1.0.0",
+  "description": "this is example",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoseJCanedo/nodejsExample.git"
+  },
+  "author": "jose",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoseJCanedo/nodejsExample/issues"
+  },
+  "homepage": "https://github.com/JoseJCanedo/nodejsExample#readme",
+  "engines": {
+    "node": "10.x"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
