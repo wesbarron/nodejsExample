@@ -1,17 +1,19 @@
+var http = require('http');
+var path =  require('path');
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.set("view engine", 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 app.get('/', function(req, res){
-    res.send("hello world");
+    res.render("index");
 });
 
 app.get('/about', function(){
     res.send("<h1>about page</h1>");
 })
 
-app.listen(port, function(){
-
+http.createServer(app).listen(port, function(){
 });
