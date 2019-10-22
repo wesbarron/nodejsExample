@@ -16,13 +16,23 @@ const mongoDB = 'mongodb+srv://test:test@cluster0-mjwvn.mongodb.net/test?retryWr
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;
-db.on('error', console.error.bind(console, "MongoDB connection error:"))
+db.on('error', console.error.bind(console, "MongoDB connection error:"));
 
 
-var task = ["clean", "cook"];
+var task = [];
 var complete = ["eat", "sleep"];
 
 app.get('/', function(req, res){
+    Todo.find(function(err, todo){
+        if(err){
+            console.log(err);
+        }else{
+            task = [];
+            for(i = 0; i< todo.length; i++){
+                task.push(todo[i].item);
+            }
+        }
+    });
     res.render("index", {task:task, complete:complete});
 });
 
