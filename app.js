@@ -37,7 +37,7 @@ app.get('/', function(req, res){
     fetch('http://xkcd.com/info.0.json')
        .then(res => res.json())
        .then(data => {
-        task.push(data);
+        task.push(data.img);
                   
        })
        .catch(err => {
