@@ -14,10 +14,10 @@
         <h2> Teams and Scores: </h2>
         <form action ="/updatescore" method="POST">
             <% for( var i = 0; i < teamNames.length; i++){ %>
-                <h3><li style="list-style:none"><input type="checkbox" name="nameScore" value="<%= teamNames[i].teamName %>, <%= teamNames[i].score %>" /><span style="padding-right: 20px; color:red"><%= teamNames[i].teamName %><span><span style="padding-left:15px; color:red"><%= teamNames[i].score %></span></h3></li>
+                <h3><li style="list-style:none"><span style="padding-right: 20px; color:red"><%= teamNames[i].teamName %><span><span style="padding-left:15px; color:red"><%= teamNames[i].score %></span></h3></li>
             <% } %>
             <div style="padding-top: 30px">
-                <button formaction="/updatescore" type="submit" > Add Point </button>
+
             </div>
         </form>
     </div>
