@@ -40,7 +40,7 @@ app.post('/addteam', function(req, res){
         if (err){
             console.log(err);
         }
-        res.redirect('/');
+        res.redirect('back');
     });
 });
 
@@ -53,7 +53,7 @@ app.post('/updatescore', function(req, res){
     Todo.updateOne({teamName: name},{score: score}, function(err){
         console.log(err);
     });
-    res.redirect('/');
+    res.redirect('back');
 });
 
 
