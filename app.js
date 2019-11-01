@@ -12,39 +12,29 @@ app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({encoded: false}));
 const Todo = require('./models/todo.model');
-const mongoDB = 'mongodb+srv://testConnection:b8RwqJYgo4hD1xhe@nodetodoexample-iqnde.mongodb.net/test?retryWrites=true&w=majority
-';
+const mongoDB = 'mongodb+srv://testConnection:b8RwqJYgo4hD1xhe@nodetodoexample-iqnde.mongodb.net/comp?retryWrites=true&w=majority';
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, "MongoDB connection error:"));
 
-var task = [];
-var complete = [];
+var teams = [];
 
 app.get('/', function(req, res){
     Todo.find(function(err, todo){
         if(err){
             console.log(err);
         }else{
-            task = [];
-            complete = [];
-            for(i = 0; i<todo.length; i++){
-                if(todo[i].done){
-                    complete.push(todo[i].item);
-                }else{
-                task.push(todo[i].item);
-                }
-            }
+            teams=todo;
         }
     });
-    res.render("index", {task:task, complete:complete});
+    res.render("index", {teamNames:teams});
 });
 
-app.post('/addtask', function(req, res){
+app.post('/addteam', function(req, res){
     let newTodo = new Todo({
-        item: req.body.newtask,
-        done: false
+        teamName: req.body.newteam,
+        score: 0
     });
     newTodo.save(function(err){
         if (err){
@@ -54,38 +44,18 @@ app.post('/addtask', function(req, res){
     });
 });
 
-app.post('/removetask', function(req, res){
-    var completeTask = req.body.check;
-    if(typeof completeTask === "string"){
-        Todo.updateOne({item: completeTask},{done: true}, function(err){
-            console.log(err);
-        });
-    }else if (typeof completeTask === "object"){
-        for(var i = 0; i < completeTask.length; i++){
-            Todo.updateOne({item: completeTask[i]},{done: true}, function(err){
-            console.log(err);
-        });
-        }
-    }
+app.post('/updatescore', function(req, res){
+    var data = req.body.nameScore;
+    console.log(data);
+    var nameScore = data.split(',')
+    var name = nameScore[0];
+    var score = parseInt(nameScore[1], 10) + 1;
+    Todo.updateOne({teamName: name},{score: score}, function(err){
+        console.log(err);
+    });
     res.redirect('/');
 });
 
-app.post("/deleteTodo", function(req, res){
-    var deleteTask = req.body.delete;
-    if(typeof deleteTask === "string"){
-        Todo.deleteOne({item: deleteTask}, function(err){
-            console.log(err);
-        });
-    }else if (typeof deleteTask === "object"){
-        for(var i = 0; i < deleteTask.length; i++){
-            Todo.deleteOne({item: deleteTask}, function(err){
-            console.log(err);
-        });
-        }
-    }
-
-    res.redirect('/');
-});
 
 http.createServer(app).listen(port, function(){
 });
