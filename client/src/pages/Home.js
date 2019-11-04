@@ -12,11 +12,14 @@ state = {
       .catch(err => console.log(err));
   }
     // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
-  callBackendAPI () {
+  callBackendAPI = async () => {
     console.log('yeah');
-    const response =  fetch('/api');
-    console.log(response);
-    const body =  response.json();
+    const body 
+    fetch('/api').then(response => response.json).then(data => body = data)
+    const response = await fetch('/api');
+    console.log(response.text());
+    console.log(response.body);
+    //const body = await response.json();
     console.log(body);
     if (response.status !== 200) {
       throw Error(body.message)
