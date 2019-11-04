@@ -15,8 +15,7 @@ state = {
   callBackendAPI () {
     console.log('yeah');
     const response =  fetch('/api');
-    console.log(response.text());
-    console.log(response.body);
+    console.log(response);
     const body =  response.json();
     console.log(body);
     if (response.status !== 200) {
