@@ -15,7 +15,7 @@ state = {
   callBackendAPI = async () => {
     console.log('yeah');
     const response = await fetch('/api');
-    console.log(response);
+    console.log(response.text());
     console.log(response.body);
     const body = await response.json();
     console.log(body);
