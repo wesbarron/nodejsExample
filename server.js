@@ -21,7 +21,7 @@ db.on('error', console.error.bind(console, "MongoDB connection error:"));
 var task = [];
 var complete = [];
 
-app.get('/', function(req, res){
+app.get('/api', function(req, res){
     Todo.find(function(err, todo){
         if(err){
             console.log(err);
@@ -31,7 +31,7 @@ app.get('/', function(req, res){
     });
 });
 
-app.post('/', function(req, res){
+app.post('/api', function(req, res){
     let newTodo = new Todo({
         item: req.body.newtask,
         done: false
@@ -45,7 +45,7 @@ app.post('/', function(req, res){
     });
 });
 
-app.put('/', function(req, res){
+app.put('/api', function(req, res){
     var id = req.body.check;
     var error = {};
     if(typeof id === "string"){
@@ -70,7 +70,7 @@ app.put('/', function(req, res){
     }
 });
 
-app.delete("/", function(req, res){
+app.delete("/api", function(req, res){
     var deleteTask = req.body.delete;
     var error = {};
     if(typeof deleteTask === "string"){
