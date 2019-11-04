@@ -28,7 +28,7 @@ app.get('/api', cors(), async  (req, res) => {
         if(err){
             console.log(err);
         }else{
-            res.json(todo);
+            res.json({"results" : todo});
         }
     });
 });
