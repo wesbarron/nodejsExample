@@ -15,8 +15,8 @@ state = {
   callBackendAPI = async () => {
     console.log('yeah');
     const response = await fetch('/api');
+    console.log(response);
     const body = await response.json();
-
     if (response.status !== 200) {
       throw Error(body.message)
     }
@@ -29,7 +29,7 @@ state = {
         <header className="App-header">
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        // Render the newly fetched data inside of this.state.data
+        Render the newly fetched data inside of this.state.data
         <p className="App-intro">{this.state.data}</p>
       </div>
     );
