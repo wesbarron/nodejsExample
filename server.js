@@ -1,4 +1,3 @@
-var http = require('http');
 var path = require('path');
 const express = require("express");
 var bodyParser = require("body-parser");
@@ -8,7 +7,8 @@ const port = process.env.PORT || 5000;
 
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", 'ejs');
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({encoded: false}));
 const Todo = require('./models/todo.model');
@@ -18,8 +18,7 @@ mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, "MongoDB connection error:"));
 
-var task = [];
-var complete = [];
+app.get('*', (req, res) => {  res.sendFile(path.join(__dirname+'/client/public/index.html'));})
 
 app.get('/api', function(req, res){
     Todo.find(function(err, todo){
@@ -95,6 +94,6 @@ app.delete("/api", function(req, res){
     }
 });
 
-http.createServer(app).listen(port, function(){
+app.listen(port, function(){
 });
 
