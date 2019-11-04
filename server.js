@@ -18,7 +18,9 @@ mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, "MongoDB connection error:"));
 
-app.get('*', (req, res) => {  res.sendFile(path.join(__dirname+'/client/public/index.html'));})
+app.get('/', (req, res) => {  
+    res.sendFile(path.join(__dirname+'/client/public/index.html'));
+});
 
 app.get('/api', function(req, res){
     Todo.find(function(err, todo){
