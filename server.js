@@ -23,7 +23,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/public/index.html'))
 })
 
-app.get('/api', cors(), async , function(req, res){
+app.get('/api', cors(), async  (req, res) => {
     Todo.find(function(err, todo){
         if(err){
             console.log(err);
@@ -33,7 +33,7 @@ app.get('/api', cors(), async , function(req, res){
     });
 });
 
-app.post('/api', cors(), async , function(req, res){
+app.post('/api', cors(), async  (req, res) => {
     let newTodo = new Todo({
         item: req.body.newtask,
         done: false
@@ -47,7 +47,7 @@ app.post('/api', cors(), async , function(req, res){
     });
 });
 
-app.put('/api', cors(), async , function(req, res){
+app.put('/api', cors(), async  (req, res) => {
     var id = req.body.check;
     var error = {};
     if(typeof id === "string"){
@@ -72,7 +72,7 @@ app.put('/api', cors(), async , function(req, res){
     }
 });
 
-app.delete("/api", cors(), async , function(req, res){
+app.delete("/api", cors(), async  (req, res) => {
     var deleteTask = req.body.delete;
     var error = {};
     if(typeof deleteTask === "string"){
