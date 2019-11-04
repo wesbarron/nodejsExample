@@ -17,7 +17,7 @@ state = {
     const response =  fetch('/api');
     console.log(response.text());
     console.log(response.body);
-    const body = await response.json();
+    const body =  response.json();
     console.log(body);
     if (response.status !== 200) {
       throw Error(body.message)
