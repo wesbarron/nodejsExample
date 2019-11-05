@@ -13,7 +13,6 @@ state = {
     callBackendAPI = async () => {
       try{
         const response = await fetch('/api/');
-        console.log(response.text());
         const initialCow = await response.json();
         console.log(initialCow.text());
         const cow = initialCow.img;
