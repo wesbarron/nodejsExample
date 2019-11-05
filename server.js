@@ -11,7 +11,7 @@ app.set("view engine", 'ejs');
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({encoded: false}));
+app.use(bodyParser.urlencoded({ extended: false })); 
 const Todo = require('./models/todo.model');
 const mongoDB = 'mongodb+srv://testConnection:b8RwqJYgo4hD1xhe@nodetodoexample-iqnde.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(mongoDB);
