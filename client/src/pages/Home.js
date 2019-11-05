@@ -14,8 +14,8 @@ state = {
       try{
         const response = await fetch('/api/');
         const initialCow = await response.json();
-        console.log(initialCow.text());
-        const cow = initialCow.img;
+        console.log(initialCow);
+        const cow = initialCow.results;
         console.log(cow);
         this.setState({ cow });
       }catch(err){
