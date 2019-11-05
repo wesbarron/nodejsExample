@@ -10,16 +10,26 @@ state = {
     this.callBackendAPI();
   }
     // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
-  callBackendAPI = () => {
-    console.log('yeah');
-    var body={}; 
-    fetch('/api').then(res => {console.log(res); res.json().then(data => {
-      console.log("data", JSON.stringify(data, null, 4));
-      this.setState({data})
-    })});
-    console.log(this.state.data);
-    return this.state.data;
-  };
+    callBackendAPI = async () => {
+      const response = await fetch('/api/');
+      console.log(response);
+      const initialCow = await response.json();
+      console.log(initialCow);
+      const cow = initialCow.img;
+      console.log(cow);
+      this.setState({ cow });
+    }
+  
+  //   callBackendAPI = () => {
+  //   console.log('yeah');
+  //   var body={}; 
+  //   .then(res => {console.log(res); res.json().then(data => {
+  //     console.log("data", JSON.stringify(data, null, 4));
+  //     this.setState({data})
+  //   })});
+  //   console.log(this.state.data);
+  //   return this.state.data;
+  // };
 
   render() {
     return (
