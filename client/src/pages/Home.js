@@ -13,10 +13,10 @@ state = {
   callBackendAPI = () => {
     console.log('yeah');
     var body={}; 
-    fetch('/api').then(res => res.json().then(data => {
+    fetch('/api').then(res => {console.log(res); res.json().then(data => {
       console.log("data", JSON.stringify(data, null, 4));
       this.setState({data})
-    }));
+    })});
     console.log(this.state.data);
     return this.state.data;
   };
