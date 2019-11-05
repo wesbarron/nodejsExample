@@ -4,13 +4,15 @@ const express = require("express");
 var bodyParser = require("body-parser");
 const app = express();
 var mongoose = require('mongoose');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.set('views', path.join(__dirname, 'views'));
 app.set("view engine", 'ejs');
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({encoded: false}));
+app.use(bodyParser.urlencoded({extended: false}));
 const Todo = require('./models/todo.model');
 const mongoDB = 'mongodb+srv://testConnection:b8RwqJYgo4hD1xhe@nodetodoexample-iqnde.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(mongoDB);
@@ -18,10 +20,12 @@ mongoose.Promise = global.Promise;
 let db = mongoose.connection;
 db.on('error', console.error.bind(console, "MongoDB connection error:"));
 
-var task = [];
-var complete = [];
 
 app.get('/', function(req, res){
+    res.sendFile(path.join(__dirname + '/client/public/index.html'));
+});
+
+app.get('/api', function(req, res){
     Todo.find(function(err, todo){
         if(err){
             console.log(err);
@@ -31,7 +35,7 @@ app.get('/', function(req, res){
     });
 });
 
-app.post('/', function(req, res){
+app.post('/api', function(req, res){
     let newTodo = new Todo({
         item: req.body.newtask,
         done: false
@@ -45,7 +49,7 @@ app.post('/', function(req, res){
     });
 });
 
-app.put('/', function(req, res){
+app.put('/api', function(req, res){
     var id = req.body.check;
     var error = {};
     if(typeof id === "string"){
@@ -70,7 +74,7 @@ app.put('/', function(req, res){
     }
 });
 
-app.delete("/", function(req, res){
+app.delete("/api", function(req, res){
     var deleteTask = req.body.delete;
     var error = {};
     if(typeof deleteTask === "string"){
