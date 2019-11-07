@@ -15,13 +15,15 @@ class Home extends Component{
             const respJson = await resp.json();
             console.log(respJson);
             this.setState({data:respJson});
-        }catch{
+        }catch(err){
             console.log(err);
         }
     }
     //write the function to do fetch
 
     render(){
+        const data = this.state.data;
+        var results = data.results;
         return (
             <h1>Everyone hates react</h1>
         );
