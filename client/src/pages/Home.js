@@ -31,7 +31,7 @@ class Home extends Component{
             itemList += results[i].item + ', ';
         }
     }
-        return React.createElement('div', null, 'React sucks!', ${itemList});
+        return React.createElement( 'div', null, React sucks: ${itemList} )
     }
 }
 
