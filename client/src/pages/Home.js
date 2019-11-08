@@ -23,15 +23,15 @@ class Home extends Component{
 
     render(){
         const data = this.state.data;
-        var results = data.results;
+
         var itemList = '';
+        if (data){
+        var results = data.results;
         for(var i = 0; i < results.length; i++){
             itemList += results[i].item + ', ';
         }
-        return (
-            <h1>Everyone hates react</h1>
-            <span>{itemList}</span>
-        );
+    }
+        return React.createElement('div', null, 'React sucks!' ${itemList});
     }
 }
 
